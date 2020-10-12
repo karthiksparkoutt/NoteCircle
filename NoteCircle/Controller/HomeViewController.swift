@@ -19,27 +19,34 @@ class HomeViewController: UIViewController, GIDSignInDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         GIDSignIn.sharedInstance()?.delegate = self
-        
-        appleButton.backgroundColor = .clear
-        appleButton.layer.cornerRadius = 5
-        appleButton.layer.borderWidth = 1
-        appleButton.layer.borderColor = UIColor.white.cgColor
-        
-        googleButton.backgroundColor = .clear
-        googleButton.layer.cornerRadius = 5
-        googleButton.layer.borderWidth = 1
-        googleButton.layer.borderColor = UIColor.white.cgColor
-        
-        facebookButton.backgroundColor = .clear
-        facebookButton.layer.cornerRadius = 5
-        facebookButton.layer.borderWidth = 1
-        facebookButton.layer.borderColor = UIColor.white.cgColor
-
-        
+        appleButton.roundCorners(corners: [.topLeft, .topRight], radius: 20)
+        googleButton.roundCorners(corners: [.topLeft, .topRight], radius: 20)
+        facebookButton.roundCorners(corners: [.topLeft, .topRight], radius: 20)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         performExistingAccountSetupFlows()
+    }
+    
+    
+    
+    @IBAction func tapOnFacebookButton(_ sender: Any) {
+    }
+    
+    @IBAction func tapOnAppleButton(_ sender: Any) {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+    }
+    
+    @IBAction func tapOnGoogleButton(_ sender: Any) {
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance()?.signIn()
     }
     
     func performExistingAccountSetupFlows() {
@@ -50,15 +57,6 @@ class HomeViewController: UIViewController, GIDSignInDelegate {
         authorizationController.delegate = self
         authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
-    }
-    
-    
-    @IBAction func tapOnFacebookButton(_ sender: Any) {
-    }
-    
-    @IBAction func tapOnGoogleButton(_ sender: Any) {
-        GIDSignIn.sharedInstance()?.presentingViewController = self
-        GIDSignIn.sharedInstance()?.signIn()
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
@@ -82,16 +80,6 @@ class HomeViewController: UIViewController, GIDSignInDelegate {
         print("Sign in dismissed")
     }
     
-    @IBAction func tapOnAppleButton(_ sender: Any) {
-        let appleIDProvider = ASAuthorizationAppleIDProvider()
-        let request = appleIDProvider.createRequest()
-        request.requestedScopes = [.fullName, .email]
-        
-        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-        authorizationController.delegate = self
-        authorizationController.presentationContextProvider = self
-        authorizationController.performRequests()
-    }
 }
 extension HomeViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
@@ -132,5 +120,20 @@ extension HomeViewController: ASAuthorizationControllerDelegate {
 extension HomeViewController: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
+    }
+}
+extension UIButton {
+    func roundCorners(corners: UIRectCorner, radius: Int = 8) {
+        let maskPath1 = UIBezierPath(roundedRect: bounds,
+                                     byRoundingCorners: corners,
+                                     cornerRadii: CGSize(width: radius, height: radius))
+        let maskLayer1 = CAShapeLayer()
+        maskLayer1.frame = bounds
+        maskLayer1.path = maskPath1.cgPath
+        layer.mask = maskLayer1
+        layer.borderWidth = 2
+        layer.borderColor = UIColor.white.cgColor
+        backgroundColor = .clear
+        layer.cornerRadius = 2
     }
 }
