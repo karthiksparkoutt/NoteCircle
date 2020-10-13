@@ -17,16 +17,18 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var emailIdTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var conformPasswordTextField: UITextField!
-
+    
     var validationModel = LoginModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
-    @IBAction func submitTapped(_ sender: UIButton) {
-          validationModel.submitTapped(vc: self)
-     }
+    @IBAction func submitTapped(_ sender: Any) {
+        validationModel.submitTapped(vc: self)
+        print("SUCESS")
+    }
+    
 }
 
 extension SignupViewController: UITextFieldDelegate {
@@ -34,17 +36,17 @@ extension SignupViewController: UITextFieldDelegate {
         let text = textField.text
         switch textField {
         case firstNameTextField:
-            self.validationModel.userName = text ?? ""
+            self.validationModel.firstName = text ?? ""
         case lastNameTextField:
-            self.validationModel.userName = text ?? ""
-            case dateOfBirthTextField:
-                self.validationModel.userName = text ?? ""
-            case phoneNumberTextField:
-                self.validationModel.userName = text ?? ""
-            case genderTextField:
-                self.validationModel.userName = text ?? ""
+            self.validationModel.lastName = text ?? ""
+        case dateOfBirthTextField:
+            self.validationModel.dateOfBirth = text ?? ""
+        case phoneNumberTextField:
+            self.validationModel.phoneNumber = text ?? ""
+        case genderTextField:
+            self.validationModel.gender = text ?? ""
         case emailIdTextField:
-            self.validationModel.email = text ?? ""
+            self.validationModel.emailId = text ?? ""
         case passwordTextField:
             self.validationModel.password = text ?? ""
         case conformPasswordTextField:
