@@ -259,6 +259,9 @@
                                         <rect key="frame" x="113.5" y="428.5" width="63" height="33"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="SUBMIT"/>
+                                        <connections>
+                                            <action selector="submitTapped:" destination="mdW-uz-lhR" eventType="touchUpInside" id="uTI-cg-nEQ"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JG2-61-yau">
                                         <rect key="frame" x="10" y="364.5" width="270" height="34"/>

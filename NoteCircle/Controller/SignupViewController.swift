@@ -18,40 +18,63 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var conformPasswordTextField: UITextField!
     
-    var validationModel = LoginModel()
-    
+    var validation = TextFieldValidation()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
-    @IBAction func submitTapped(_ sender: Any) {
-        validationModel.submitTapped(vc: self)
-        print("SUCESS")
-    }
+    @IBAction func validationBtnAction(_ sender: Any) {
+           
+           
+       guard let name = firstNameTextField.text, let email = emailIdTextField.text?.trimmingCharacters(in: .whitespaces), let phone = phoneNumberTextField.text?.trimmingCharacters(in: .whitespaces), let pw = passwordTextField.text?.trimmingCharacters(in: .whitespaces) else{return}
+      
+           
+           let isNameValidate = self.validation.nameValidation(name)
+           
+           if isNameValidate == false{
+               
+               alertDialouge(title: "Error!!", msg: "Invalid Name String!")
+               return
+           }
+            let isEmailValidate = self.validation.emailValidation(email)
+         
+            if isEmailValidate == false{
+               alertDialouge(title: "Error!!", msg: "Invalid Email String!")
+           return
+               
+           }
+           let isPhoneValidate = self.validation.phoneNumberValidation(phone)
+          
+           if isPhoneValidate == false{
+               
+               alertDialouge(title: "Error!!", msg: "Invalid Phone Number!")
+               return
+           }
+            let isPwValidate = self.validation.passwordValidation(pw)
+          
+            if isPwValidate == false{
+               alertDialouge(title: "Error", msg: "Invalid Password!")
+               return
+           }
+         
+           if (isNameValidate == true && isEmailValidate == true && isPhoneValidate == true && isPwValidate == true){
+               alertDialouge(title: "Alert!!", msg: "Success!")
+           }
+           
+       }
     
 }
 
-extension SignupViewController: UITextFieldDelegate {
-    func textFieldDidChange(_ textField: UITextField) {
-        let text = textField.text
-        switch textField {
-        case firstNameTextField:
-            self.validationModel.firstName = text ?? ""
-        case lastNameTextField:
-            self.validationModel.lastName = text ?? ""
-        case dateOfBirthTextField:
-            self.validationModel.dateOfBirth = text ?? ""
-        case phoneNumberTextField:
-            self.validationModel.phoneNumber = text ?? ""
-        case genderTextField:
-            self.validationModel.gender = text ?? ""
-        case emailIdTextField:
-            self.validationModel.emailId = text ?? ""
-        case passwordTextField:
-            self.validationModel.password = text ?? ""
-        case conformPasswordTextField:
-            self.validationModel.confirmPassword = text ?? ""
-        default: break
-        }
-    }
+
+extension SignupViewController {
+   func alertDialouge(title : String,msg : String){
+    
+    let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+    let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+    alertController.addAction(ok)
+    self.present(alertController, animated: true, completion: nil)
+    
+    
+}
 }
