@@ -10,26 +10,33 @@ import UIKit
 import AuthenticationServices
 import GoogleSignIn
 
-class HomeViewController: UIViewController, GIDSignInDelegate {
+@available(iOS 13.0, *)
+class AuthenticationViewController: UIViewController, GIDSignInDelegate {
     
+    //MARK: - IBOutlet
     @IBOutlet weak var appleButton: UIButton!
     @IBOutlet weak var googleButton: UIButton!
     @IBOutlet weak var facebookButton: UIButton!
     
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        GIDSignIn.sharedInstance()?.delegate = self
-        appleButton.roundCorners(corners: [.topLeft, .topRight], radius: 20)
-        googleButton.roundCorners(corners: [.topLeft, .topRight], radius: 20)
-        facebookButton.roundCorners(corners: [.topLeft, .topRight], radius: 20)
+        // Setup View
+        setupView()
     }
+    
+    // MARK: - View Methods
+    private func setupView() {
+        // Configure View
+        GIDSignIn.sharedInstance()?.delegate = self
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         performExistingAccountSetupFlows()
     }
     
-    
-    
+    //MARK: - IBAction
     @IBAction func tapOnFacebookButton(_ sender: Any) {
     }
     
@@ -81,7 +88,9 @@ class HomeViewController: UIViewController, GIDSignInDelegate {
     }
     
 }
-extension HomeViewController: ASAuthorizationControllerDelegate {
+@available(iOS 13.0, *)
+//MARK: - ASAuthorizationControllerDelegate
+extension AuthenticationViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             
@@ -117,23 +126,11 @@ extension HomeViewController: ASAuthorizationControllerDelegate {
     }
 }
 
-extension HomeViewController: ASAuthorizationControllerPresentationContextProviding {
+@available(iOS 13.0, *)
+//MARK: - ASAuthorizationControllerPresentationContextProviding
+extension AuthenticationViewController: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
     }
 }
-extension UIButton {
-    func roundCorners(corners: UIRectCorner, radius: Int = 8) {
-        let maskPath1 = UIBezierPath(roundedRect: bounds,
-                                     byRoundingCorners: corners,
-                                     cornerRadii: CGSize(width: radius, height: radius))
-        let maskLayer1 = CAShapeLayer()
-        maskLayer1.frame = bounds
-        maskLayer1.path = maskPath1.cgPath
-        layer.mask = maskLayer1
-        layer.borderWidth = 2
-        layer.borderColor = UIColor.white.cgColor
-        backgroundColor = .clear
-        layer.cornerRadius = 2
-    }
-}
+
