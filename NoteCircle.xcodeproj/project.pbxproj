@@ -11,6 +11,10 @@
 		3B2DB62D2530580800133A7F /* TextFieldValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2DB62C2530580800133A7F /* TextFieldValidation.swift */; };
 		3B575F9D25340FAE00B869B2 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B575F9C25340FAE00B869B2 /* CoreDataManager.swift */; };
 		3B575FA42534101200B869B2 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B575FA22534101200B869B2 /* DataModel.xcdatamodeld */; };
+		3BD338D02537699B005C4248 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD338CF2537699B005C4248 /* RoundButton.swift */; };
+		3BD338D225377247005C4248 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD338D125377247005C4248 /* UITextField+Extension.swift */; };
+		3BD338D5253772C7005C4248 /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD338D4253772C7005C4248 /* Validators.swift */; };
+		3BD338D82537731C005C4248 /* RegisterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD338D72537731C005C4248 /* RegisterData.swift */; };
 		3BD7148A252F00C000E6A951 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD71489252F00C000E6A951 /* AppDelegate.swift */; };
 		3BD7148C252F00C000E6A951 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD7148B252F00C000E6A951 /* SceneDelegate.swift */; };
 		3BD71491252F00C000E6A951 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD7148F252F00C000E6A951 /* Main.storyboard */; };
@@ -52,6 +56,10 @@
 		3B2DB62C2530580800133A7F /* TextFieldValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldValidation.swift; sourceTree = "<group>"; };
 		3B575F9C25340FAE00B869B2 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		3B575FA32534101200B869B2 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		3BD338CF2537699B005C4248 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		3BD338D125377247005C4248 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		3BD338D4253772C7005C4248 /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
+		3BD338D72537731C005C4248 /* RegisterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterData.swift; sourceTree = "<group>"; };
 		3BD71486252F00C000E6A951 /* NoteCircle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteCircle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BD71489252F00C000E6A951 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BD7148B252F00C000E6A951 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +137,7 @@
 			children = (
 				3BD714B9252F0DEC00E6A951 /* AuthenticationViewController.swift */,
 				3B2DB629253054DF00133A7F /* LoginViewController.swift */,
+				3BD338CF2537699B005C4248 /* RoundButton.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -145,6 +154,8 @@
 			isa = PBXGroup;
 			children = (
 				3B2DB62C2530580800133A7F /* TextFieldValidation.swift */,
+				3BD338D125377247005C4248 /* UITextField+Extension.swift */,
+				3BD338D72537731C005C4248 /* RegisterData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -164,6 +175,14 @@
 				3B575FA22534101200B869B2 /* DataModel.xcdatamodeld */,
 			);
 			path = CoreDataManager;
+			sourceTree = "<group>";
+		};
+		3BD338D32537729A005C4248 /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				3BD338D4253772C7005C4248 /* Validators.swift */,
+			);
+			path = Validation;
 			sourceTree = "<group>";
 		};
 		3BD7147D252F00C000E6A951 = {
@@ -196,6 +215,7 @@
 				3B2DB62725301C3500133A7F /* Controller */,
 				3B2DB62825301C5200133A7F /* View */,
 				3B2DB62B253057C400133A7F /* Model */,
+				3BD338D32537729A005C4248 /* Validation */,
 				3B575F9E25340FB400B869B2 /* CoreDataManager */,
 				3B2DB62E25305BD200133A7F /* TextFieldValidation */,
 				3BD71492252F00E000E6A951 /* Assets.xcassets */,
@@ -498,11 +518,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BD338D02537699B005C4248 /* RoundButton.swift in Sources */,
 				3BF2D4912536B68900F38BBF /* ValidationPreferences.swift in Sources */,
 				3B2DB62D2530580800133A7F /* TextFieldValidation.swift in Sources */,
 				3BD7148A252F00C000E6A951 /* AppDelegate.swift in Sources */,
+				3BD338D5253772C7005C4248 /* Validators.swift in Sources */,
 				3B575FA42534101200B869B2 /* DataModel.xcdatamodeld in Sources */,
+				3BD338D225377247005C4248 /* UITextField+Extension.swift in Sources */,
 				3B2DB62A253054DF00133A7F /* LoginViewController.swift in Sources */,
+				3BD338D82537731C005C4248 /* RegisterData.swift in Sources */,
 				3BD7148C252F00C000E6A951 /* SceneDelegate.swift in Sources */,
 				3B575F9D25340FAE00B869B2 /* CoreDataManager.swift in Sources */,
 				3BD714BA252F0DEC00E6A951 /* AuthenticationViewController.swift in Sources */,

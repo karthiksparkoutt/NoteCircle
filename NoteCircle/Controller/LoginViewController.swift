@@ -9,8 +9,7 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-    
-    //MARK: - IBOutlet
+    // MARK: - Properties
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var dateOfBirthTextField: UITextField!
@@ -19,66 +18,78 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailIdTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var conformPasswordTextField: UITextField!
+    @IBOutlet var saveButton: UIButton!
+    @IBOutlet var textFields: [UITextField]!
+    @IBOutlet var passwordValidationLabel: UILabel!
     
-    //MARK: - Class Properties
-    var validation = TextFieldValidation()
-    
-    //MARK: - UIViewController Events
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.textDidChange(_:)),
+            name: UITextField.textDidChangeNotification,
+            object: nil)
     }
     
-    //MARK: - IBAction
-    @IBAction func registerBtnAction(_ sender: Any) {
-        guard let name = firstNameTextField.text, let email = emailIdTextField.text?.trimmingCharacters(in: .whitespaces), let phone = phoneNumberTextField.text?.trimmingCharacters(in: .whitespaces), let pw = passwordTextField.text?.trimmingCharacters(in: .whitespaces) else{return}
-        
-        
-        let isNameValidate = self.validation.nameValidation(name)
-        
-        if isNameValidate == false{
-            
-            alertDialouge(title: "Error!!", msg: "Invalid Name String!")
-            return
-        }
-        let isEmailValidate = self.validation.emailValidation(email)
-        
-        if isEmailValidate == false{
-            alertDialouge(title: "Error!!", msg: "Invalid Email String!")
-            return
-            
-        }
-        let isPhoneValidate = self.validation.phoneNumberValidation(phone)
-        
-        if isPhoneValidate == false{
-            
-            alertDialouge(title: "Error!!", msg: "Invalid Phone Number!")
-            return
-        }
-        let isPwValidate = self.validation.passwordValidation(pw)
-        if(passwordTextField.text == "" || conformPasswordTextField.text == "") {}
-        
-        if isPwValidate == false{
-            alertDialouge(title: "Error", msg: "Invalid Password!")
-            return
-        }
-        
-        if (isNameValidate == true && isEmailValidate == true && isPhoneValidate == true && isPwValidate == true){
-            alertDialouge(title: "Alert!!", msg: "Success!")
-        }
-        
+    // MARK: - View Methods
+    fileprivate func setupView() {
+        saveButton.isEnabled = false
+        passwordValidationLabel.isHidden = true
     }
     
+    // MARK: - Notification Handling
+    @objc private func textDidChange(_ notification: Notification) {
+        var formIsValid = true
+        for textField in textFields {
+            let (valid, _) = validate(textField)
+            guard valid else {
+                formIsValid = false
+                break
+            }
+        }
+        saveButton.isEnabled = formIsValid
+    }
+    
+    // MARK: - Helper Methods
+    fileprivate func validate(_ textField: UITextField) -> (Bool, String?) {
+        guard let text = textField.text else {
+            return (false, nil)
+        }
+        
+        if textField == passwordTextField {
+            return (text.count >= 6, "Your password is too short.")
+        }
+        
+        return (text.count > 0, "This field cannot be empty.")
+    }
 }
 
-
-extension LoginViewController {
-    func alertDialouge(title : String,msg : String){
+extension LoginViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case firstNameTextField:
+            lastNameTextField.becomeFirstResponder()
+        case lastNameTextField:
+            passwordTextField.becomeFirstResponder()
+        case passwordTextField:
+            let (valid, message) = validate(textField)
+            
+            if valid {
+                emailIdTextField.becomeFirstResponder()
+            }
+            
+            self.passwordValidationLabel.text = message
+            
+            UIView.animate(withDuration: 0.25, animations: {
+                self.passwordValidationLabel.isHidden = valid
+            })
+        default:
+            emailIdTextField.resignFirstResponder()
+        }
         
-        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(ok)
-        self.present(alertController, animated: true, completion: nil)
-        
-        
+        return true
     }
 }

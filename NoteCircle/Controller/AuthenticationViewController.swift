@@ -13,7 +13,7 @@ import GoogleSignIn
 @available(iOS 13.0, *)
 class AuthenticationViewController: UIViewController, GIDSignInDelegate {
     
-    //MARK: - IBOutlet
+    // MARK: - Properties
     @IBOutlet weak var appleButton: UIButton!
     @IBOutlet weak var googleButton: UIButton!
     @IBOutlet weak var facebookButton: UIButton!
@@ -27,8 +27,8 @@ class AuthenticationViewController: UIViewController, GIDSignInDelegate {
     
     // MARK: - View Methods
     private func setupView() {
-        // Configure View
         GIDSignIn.sharedInstance()?.delegate = self
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
