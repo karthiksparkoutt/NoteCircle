@@ -12,84 +12,66 @@ class LoginViewController: UIViewController {
     // MARK: - Properties
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
-    @IBOutlet weak var dateOfBirthTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
-    @IBOutlet weak var genderTextField: UITextField!
     @IBOutlet weak var emailIdTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var conformPasswordTextField: UITextField!
-    @IBOutlet var saveButton: UIButton!
-    @IBOutlet var textFields: [UITextField]!
-    @IBOutlet var passwordValidationLabel: UILabel!
+    @IBOutlet var submitButton: UIButton!
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(self.textDidChange(_:)),
-            name: UITextField.textDidChangeNotification,
-            object: nil)
     }
     
     // MARK: - View Methods
     fileprivate func setupView() {
-        saveButton.isEnabled = false
-        passwordValidationLabel.isHidden = true
     }
     
-    // MARK: - Notification Handling
-    @objc private func textDidChange(_ notification: Notification) {
-        var formIsValid = true
-        for textField in textFields {
-            let (valid, _) = validate(textField)
-            guard valid else {
-                formIsValid = false
-                break
-            }
-        }
-        saveButton.isEnabled = formIsValid
-    }
-    
-    // MARK: - Helper Methods
-    fileprivate func validate(_ textField: UITextField) -> (Bool, String?) {
-        guard let text = textField.text else {
-            return (false, nil)
-        }
-        
-        if textField == passwordTextField {
-            return (text.count >= 6, "Your password is too short.")
-        }
-        
-        return (text.count > 0, "This field cannot be empty.")
-    }
-}
+    @IBAction func submitButtonTapped(_ sender: Any) {
+        let providedEmailAddress = emailIdTextField.text
 
-extension LoginViewController: UITextFieldDelegate {
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        switch textField {
-        case firstNameTextField:
-            lastNameTextField.becomeFirstResponder()
-        case lastNameTextField:
-            passwordTextField.becomeFirstResponder()
-        case passwordTextField:
-            let (valid, message) = validate(textField)
-            
-            if valid {
-                emailIdTextField.becomeFirstResponder()
-            }
-            
-            self.passwordValidationLabel.text = message
-            
-            UIView.animate(withDuration: 0.25, animations: {
-                self.passwordValidationLabel.isHidden = valid
-            })
-        default:
-            emailIdTextField.resignFirstResponder()
+        
+        let isEmailAddressValid = isValidEmail(email: providedEmailAddress!)
+
+        if isEmailAddressValid
+        {
+            print("is valid")
+        } else {
+            print("is not valid")
+            displayAlertMessage(messageToDisplay: " is not valid")
         }
         
-        return true
+
+    }
+    
+    func isValidPhone(phone: String) -> Bool {
+            let phoneRegex = "^[0-9+]{0,1}+[0-9]{5,16}$"
+            let phoneTest = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
+            return phoneTest.evaluate(with: phone)
+        }
+
+    func isValidEmail(email: String) -> Bool {
+            let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+            let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+            return emailTest.evaluate(with: email)
+        }
+    
+    func displayAlertMessage(messageToDisplay: String)
+    {
+        let alertController = UIAlertController(title: "NoteCircle", message: messageToDisplay, preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+            print("Ok button tapped");
+            
+        }
+        
+        alertController.addAction(OKAction)
+        
+        self.present(alertController, animated: true, completion:nil)
+    }
+    
+}
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
     }
 }

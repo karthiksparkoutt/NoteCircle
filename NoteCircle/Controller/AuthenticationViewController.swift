@@ -51,6 +51,12 @@ class AuthenticationViewController: UIViewController, GIDSignInDelegate {
         authorizationController.performRequests()
     }
     
+    @IBAction func signupButtonTapped(_ sender: Any) {
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController
+        {
+            present(vc, animated: true, completion: nil)
+        }
+    }
     @IBAction func tapOnGoogleButton(_ sender: Any) {
         GIDSignIn.sharedInstance()?.presentingViewController = self
         GIDSignIn.sharedInstance()?.signIn()
@@ -133,4 +139,3 @@ extension AuthenticationViewController: ASAuthorizationControllerPresentationCon
         return self.view.window!
     }
 }
-
