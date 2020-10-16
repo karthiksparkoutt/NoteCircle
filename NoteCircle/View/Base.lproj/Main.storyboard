@@ -429,7 +429,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="submitButtonTapped:" destination="mdW-uz-lhR" eventType="touchUpInside" id="vlj-NV-73Q"/>
+                                            <action selector="submitButtonTapped:" destination="mdW-uz-lhR" eventType="touchUpInside" id="oNG-EH-BCq"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LAST NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVA-4v-WHe">
@@ -534,7 +534,6 @@
                         <outlet property="lastNameTextField" destination="rhE-sV-2wM" id="prr-fU-Jrr"/>
                         <outlet property="passwordTextField" destination="Wha-GG-iYZ" id="7AV-6h-DMe"/>
                         <outlet property="phoneNumberTextField" destination="30p-Vx-5Ux" id="y6j-9v-oby"/>
-                        <outlet property="submitButton" destination="d2f-B2-2mM" id="dt0-x4-Idl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z1k-go-6J6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

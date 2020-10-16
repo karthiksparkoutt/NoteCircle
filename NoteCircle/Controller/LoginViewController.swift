@@ -25,36 +25,63 @@ class LoginViewController: UIViewController {
     
     // MARK: - View Methods
     fileprivate func setupView() {
+        passwordTextField.isSecureTextEntry = true
     }
     
     @IBAction func submitButtonTapped(_ sender: Any) {
-        let providedEmailAddress = emailIdTextField.text
-
-        
-        let isEmailAddressValid = isValidEmail(email: providedEmailAddress!)
-
-        if isEmailAddressValid
-        {
-            print("is valid")
-        } else {
-            print("is not valid")
-            displayAlertMessage(messageToDisplay: " is not valid")
+        print("submit button tapped")
+        guard let email = emailIdTextField.text, let password = passwordTextField.text,
+            let phone = phoneNumberTextField.text else {
+                return
         }
-        
-
+        let isValidateEmail = isValidEmail(email: email)
+        if (isValidateEmail == false) {
+            displayAlertMessage(messageToDisplay: "Incorrect Email")
+            print("Incorrect Email")
+            return
+        }
+        let isValidatePass = isValidPassword(password: password)
+        if (isValidatePass == false) {
+            displayAlertMessage(messageToDisplay: "Incorrect password")
+            print("Incorrect password")
+            return
+        }
+        let isValidatePhone = isValidPhone(phone: phone)
+        if (isValidatePhone == false) {
+            displayAlertMessage(messageToDisplay: "Incorrect PhoneNumber")
+            print("Incorrect Phone")
+            return
+        }
+        if (isValidateEmail == true || isValidatePass == true || isValidatePhone == true) {
+            login(info: "All Field are valid")
+            print("All fields are valid")
+        }
     }
     
     func isValidPhone(phone: String) -> Bool {
-            let phoneRegex = "^[0-9+]{0,1}+[0-9]{5,16}$"
-            let phoneTest = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
-            return phoneTest.evaluate(with: phone)
-        }
-
+        let phoneRegex = "^[0-9+]{0,1}+[0-9]{5,16}$"
+        let phoneTest = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
+        return phoneTest.evaluate(with: phone)
+    }
+    
     func isValidEmail(email: String) -> Bool {
-            let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-            let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-            return emailTest.evaluate(with: email)
-        }
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: email)
+    }
+    func isValidPassword(password : String) -> Bool{
+        
+        let pwReEx = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
+        let pwStringTrmin = password.trimmingCharacters(in: .whitespaces)
+        let validatePw = NSPredicate(format: "SELF MATCHES %@", pwReEx)
+        let isValidatePw = validatePw.evaluate(with: pwStringTrmin)
+        return isValidatePw
+    }
+    func login(info: String) {
+        let alert = UIAlertController(title: "NoteCircle", message: "Sucessfully logged in with \(info)", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Done", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
     
     func displayAlertMessage(messageToDisplay: String)
     {
@@ -71,7 +98,13 @@ class LoginViewController: UIViewController {
     }
     
 }
-extension LoginViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-    }
-}
+// MARK: - TextFieldDelegate
+//extension LoginViewController: UITextFieldDelegate {
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        if textField == phoneNumberTextField {
+//            let allowedCharacters = CharacterSet(charactersIn:"+0123456789 ")
+//            let characterSet = CharacterSet(charactersIn: string)
+//            return allowedCharacters.isSuperset(of: characterSet)
+//        }
+//        return true
+//    }}
