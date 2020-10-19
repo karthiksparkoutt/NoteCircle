@@ -7,7 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
+@available(iOS 13.0, *)
 class LoginViewController: UIViewController {
     // MARK: - Properties
     @IBOutlet weak var firstNameTextField: UITextField!
@@ -26,10 +28,11 @@ class LoginViewController: UIViewController {
     // MARK: - View Methods
     fileprivate func setupView() {
         passwordTextField.isSecureTextEntry = true
+        phoneNumberTextField.keyboardType = .numberPad
+        
     }
     
-    @IBAction func submitButtonTapped(_ sender: Any) {
-        print("submit button tapped")
+    @IBAction func submitButtonClicked(_ sender: Any) {
         guard let email = emailIdTextField.text, let password = passwordTextField.text,
             let phone = phoneNumberTextField.text else {
                 return
@@ -37,23 +40,20 @@ class LoginViewController: UIViewController {
         let isValidateEmail = isValidEmail(email: email)
         if (isValidateEmail == false) {
             displayAlertMessage(messageToDisplay: "Incorrect Email")
-            print("Incorrect Email")
             return
         }
         let isValidatePass = isValidPassword(password: password)
         if (isValidatePass == false) {
             displayAlertMessage(messageToDisplay: "Incorrect password")
-            print("Incorrect password")
             return
         }
         let isValidatePhone = isValidPhone(phone: phone)
         if (isValidatePhone == false) {
             displayAlertMessage(messageToDisplay: "Incorrect PhoneNumber")
-            print("Incorrect Phone")
             return
         }
         if (isValidateEmail == true || isValidatePass == true || isValidatePhone == true) {
-            login(info: "All Field are valid")
+            login(info: emailIdTextField.text!)
             print("All fields are valid")
         }
     }
@@ -78,6 +78,7 @@ class LoginViewController: UIViewController {
         return isValidatePw
     }
     func login(info: String) {
+        createData()
         let alert = UIAlertController(title: "NoteCircle", message: "Sucessfully logged in with \(info)", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Done", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
@@ -86,25 +87,38 @@ class LoginViewController: UIViewController {
     func displayAlertMessage(messageToDisplay: String)
     {
         let alertController = UIAlertController(title: "NoteCircle", message: messageToDisplay, preferredStyle: .alert)
-        
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
             print("Ok button tapped");
-            
         }
-        
         alertController.addAction(OKAction)
-        
         self.present(alertController, animated: true, completion:nil)
+    }
+    func createData(){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let userEntity = NSEntityDescription.entity(forEntityName: "User", in: managedContext)!
+        let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
+        user.setValue(phoneNumberTextField.text, forKeyPath: "phone")
+        user.setValue(emailIdTextField.text, forKey: "email")
+        user.setValue(passwordTextField.text, forKey: "password")
+        
+        do {
+            try managedContext.save()
+            
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
     }
     
 }
 // MARK: - TextFieldDelegate
-//extension LoginViewController: UITextFieldDelegate {
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        if textField == phoneNumberTextField {
-//            let allowedCharacters = CharacterSet(charactersIn:"+0123456789 ")
-//            let characterSet = CharacterSet(charactersIn: string)
-//            return allowedCharacters.isSuperset(of: characterSet)
-//        }
-//        return true
-//    }}
+@available(iOS 13.0, *)
+extension LoginViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == phoneNumberTextField {
+            let allowedCharacters = CharacterSet(charactersIn:"+0123456789 ")
+            let characterSet = CharacterSet(charactersIn: string)
+            return allowedCharacters.isSuperset(of: characterSet)
+        }
+        return true
+    }}
