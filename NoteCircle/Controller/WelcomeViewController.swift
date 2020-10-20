@@ -9,7 +9,7 @@
 import UIKit
 
 @available(iOS 13.0, *)
-class HomeViewController: UIViewController {
+class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func nextButtonTapped(_ sender: Any) {
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AuthenticationViewController") as? AuthenticationViewController
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieViewController") as? MovieViewController
         {
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true, completion: nil)

@@ -8,11 +8,9 @@
 
 import Foundation
 
-struct RegisterData {
-    var email: String
-    var password: String
-    var username: String
-    var projectID: String
-    var department: String
-    var age: Int
+struct ImageModel {
+    
+    var name: String = ""
+    var image: String = ""
+    var date: String = ""
 }
