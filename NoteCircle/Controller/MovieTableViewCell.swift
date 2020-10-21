@@ -1,5 +1,5 @@
 //
-//  MoviePopularTableViewCell.swift
+//  MovieTableViewCell.swift
 //  NoteCircle
 //
 //  Created by Karthik Rajan T  on 20/10/20.
@@ -8,11 +8,8 @@
 
 import UIKit
 
-class MoviePopularTableViewCell: UITableViewCell {
+class MovieTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var popularMovieImageView: UIImageView!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
