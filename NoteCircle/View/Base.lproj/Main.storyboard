@@ -543,54 +543,39 @@
             </objects>
             <point key="canvasLocation" x="1361" y="98"/>
         </scene>
-        <!--Movie View Controller-->
-        <scene sceneID="ktD-IN-31q">
+        <!--Movies View Controller-->
+        <scene sceneID="0nj-nh-HDF">
             <objects>
-                <viewController storyboardIdentifier="MovieViewController" id="NYp-Mp-Wai" customClass="MovieViewController" customModule="NoteCircle" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="mlz-0K-cSJ">
+                <viewController storyboardIdentifier="MoviesViewController" id="b7w-aJ-92Y" customClass="MoviesViewController" customModule="NoteCircle" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FrB-QW-9ct">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yfG-cw-MgD">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e0g-u1-xID">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="mlz-0K-cSJ" id="c9F-hR-zu0"/>
-                                    <outlet property="delegate" destination="mlz-0K-cSJ" id="giB-et-BC8"/>
+                                    <outlet property="dataSource" destination="b7w-aJ-92Y" id="uZ3-B3-DdD"/>
+                                    <outlet property="delegate" destination="b7w-aJ-92Y" id="RCr-fR-lsp"/>
                                 </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="EPj-z4-hpc" firstAttribute="bottom" secondItem="yfG-cw-MgD" secondAttribute="bottom" id="6YA-VO-AdE"/>
-                            <constraint firstItem="yfG-cw-MgD" firstAttribute="leading" secondItem="EPj-z4-hpc" secondAttribute="leading" id="BX3-mg-0Qp"/>
-                            <constraint firstItem="yfG-cw-MgD" firstAttribute="top" secondItem="EPj-z4-hpc" secondAttribute="top" id="eQd-xC-XaT"/>
-                            <constraint firstAttribute="trailing" secondItem="yfG-cw-MgD" secondAttribute="trailing" id="yqa-xG-Q98"/>
+                            <constraint firstItem="e0g-u1-xID" firstAttribute="leading" secondItem="4wM-Zm-Zou" secondAttribute="leading" id="FNb-TM-Koi"/>
+                            <constraint firstItem="e0g-u1-xID" firstAttribute="top" secondItem="4wM-Zm-Zou" secondAttribute="top" id="JI4-HX-y4S"/>
+                            <constraint firstItem="4wM-Zm-Zou" firstAttribute="trailing" secondItem="e0g-u1-xID" secondAttribute="trailing" id="XNl-3a-SAW"/>
+                            <constraint firstItem="4wM-Zm-Zou" firstAttribute="bottom" secondItem="e0g-u1-xID" secondAttribute="bottom" id="aBn-wd-1LI"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="EPj-z4-hpc"/>
+                        <viewLayoutGuide key="safeArea" id="4wM-Zm-Zou"/>
                     </view>
                     <connections>
-                        <outlet property="movieTableView" destination="yfG-cw-MgD" id="JIa-ZO-0pK"/>
+                        <outlet property="movieTableView" destination="e0g-u1-xID" id="oIK-ec-ihN"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="f6z-IP-OIF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JlP-cp-zMe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2115.9420289855075" y="97.767857142857139"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="Ea3-uW-1eA">
-            <objects>
-                <viewController id="XNV-Lr-4aH" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="MHu-5m-ehk">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="17g-Wa-vKB"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0bt-Ep-8q5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2982" y="77"/>
+            <point key="canvasLocation" x="2131.8840579710145" y="97.767857142857139"/>
         </scene>
     </scenes>
     <resources>

@@ -99,7 +99,7 @@ class LoginViewController: UIViewController {
         let userEntity = NSEntityDescription.entity(forEntityName: "User", in: managedContext)!
         let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
         user.setValue(phoneNumberTextField.text, forKeyPath: "phone")
-        user.setValue(emailIdTextField.text, forKey: "email")
+        user.setValue(emailIdTextField.text, forKey: "emailId")
         user.setValue(passwordTextField.text, forKey: "password")
         
         do {

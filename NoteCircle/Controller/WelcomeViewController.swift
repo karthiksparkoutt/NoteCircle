@@ -17,7 +17,7 @@ class WelcomeViewController: UIViewController {
     }
     
     @IBAction func nextButtonTapped(_ sender: Any) {
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieViewController") as? MovieViewController
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MoviesViewController") as? MoviesViewController
         {
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true, completion: nil)

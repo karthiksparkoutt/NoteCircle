@@ -1,15 +1,17 @@
 //
-//  MovieTableViewCell.swift
+//  MoviesTableViewCell.swift
 //  NoteCircle
 //
-//  Created by Karthik Rajan T  on 20/10/20.
+//  Created by Karthik Rajan T  on 21/10/20.
 //  Copyright © 2020 Karthik Rajan T . All rights reserved.
 //
 
 import UIKit
 
-class MovieTableViewCell: UITableViewCell {
+class MoviesTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var movieLabel: UILabel!
+    @IBOutlet weak var movieImageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
