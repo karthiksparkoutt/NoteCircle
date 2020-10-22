@@ -9,7 +9,7 @@
 import UIKit
 
 class MoviesTableViewCell: UITableViewCell {
-
+    // MARK: - Properties
     @IBOutlet weak var movieLabel: UILabel!
     @IBOutlet weak var movieImageView: UIImageView!
     override func awakeFromNib() {

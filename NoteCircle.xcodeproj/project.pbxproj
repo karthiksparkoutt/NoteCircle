@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		3B2DB62A253054DF00133A7F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2DB629253054DF00133A7F /* LoginViewController.swift */; };
+		3B546A3425413E3500DD526C /* Petitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B546A3325413E3500DD526C /* Petitions.swift */; };
 		3B575F9D25340FAE00B869B2 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B575F9C25340FAE00B869B2 /* CoreDataManager.swift */; };
 		3B575FA42534101200B869B2 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B575FA22534101200B869B2 /* DataModel.xcdatamodeld */; };
 		3B702BDC254012A2009B9BF7 /* MoviesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B702BDA254012A2009B9BF7 /* MoviesTableViewCell.swift */; };
 		3B702BDD254012A2009B9BF7 /* MoviesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B702BDB254012A2009B9BF7 /* MoviesTableViewCell.xib */; };
 		3B702BDF25401803009B9BF7 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B702BDE25401803009B9BF7 /* MoviesViewController.swift */; };
 		3BD338D02537699B005C4248 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD338CF2537699B005C4248 /* RoundButton.swift */; };
-		3BD338D82537731C005C4248 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD338D72537731C005C4248 /* ImageModel.swift */; };
 		3BD7148A252F00C000E6A951 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD71489252F00C000E6A951 /* AppDelegate.swift */; };
 		3BD7148C252F00C000E6A951 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD7148B252F00C000E6A951 /* SceneDelegate.swift */; };
 		3BD71491252F00C000E6A951 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD7148F252F00C000E6A951 /* Main.storyboard */; };
@@ -24,6 +24,7 @@
 		3BD714AC252F00E200E6A951 /* NoteCircleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD714AB252F00E200E6A951 /* NoteCircleUITests.swift */; };
 		3BD714BA252F0DEC00E6A951 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD714B9252F0DEC00E6A951 /* AuthenticationViewController.swift */; };
 		3BF058342538B2FA0054F14D /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF058332538B2FA0054F14D /* WelcomeViewController.swift */; };
+		3BF265262540BC0C00C8F937 /* Petition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF265252540BC0C00C8F937 /* Petition.swift */; };
 		85C28CC4AAC679F0A2D40D44 /* Pods_NoteCircleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF04ABABE5838D15CB350CCB /* Pods_NoteCircleTests.framework */; };
 		AFF1259481D93541C3E8719D /* Pods_NoteCircle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1020D92B0F07F42CECD044EE /* Pods_NoteCircle.framework */; };
 		B3C8CBA02AC41489461AAD27 /* Pods_NoteCircle_NoteCircleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E6E9586D5FC5031CE899FB /* Pods_NoteCircle_NoteCircleUITests.framework */; };
@@ -53,13 +54,13 @@
 		2A53F1EC45033D3F565C1F63 /* Pods-NoteCircle-NoteCircleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoteCircle-NoteCircleUITests.release.xcconfig"; path = "Target Support Files/Pods-NoteCircle-NoteCircleUITests/Pods-NoteCircle-NoteCircleUITests.release.xcconfig"; sourceTree = "<group>"; };
 		370E2D63005E957615ACB79E /* Pods-NoteCircleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoteCircleTests.debug.xcconfig"; path = "Target Support Files/Pods-NoteCircleTests/Pods-NoteCircleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3B2DB629253054DF00133A7F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		3B546A3325413E3500DD526C /* Petitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petitions.swift; sourceTree = "<group>"; };
 		3B575F9C25340FAE00B869B2 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		3B575FA32534101200B869B2 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		3B702BDA254012A2009B9BF7 /* MoviesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTableViewCell.swift; sourceTree = "<group>"; };
 		3B702BDB254012A2009B9BF7 /* MoviesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoviesTableViewCell.xib; sourceTree = "<group>"; };
 		3B702BDE25401803009B9BF7 /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		3BD338CF2537699B005C4248 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
-		3BD338D72537731C005C4248 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		3BD71486252F00C000E6A951 /* NoteCircle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteCircle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BD71489252F00C000E6A951 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BD7148B252F00C000E6A951 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +76,7 @@
 		3BD714AD252F00E200E6A951 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BD714B9252F0DEC00E6A951 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		3BF058332538B2FA0054F14D /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		3BF265252540BC0C00C8F937 /* Petition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petition.swift; sourceTree = "<group>"; };
 		6C004667487F0DF2A2212B59 /* Pods-NoteCircle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoteCircle.debug.xcconfig"; path = "Target Support Files/Pods-NoteCircle/Pods-NoteCircle.debug.xcconfig"; sourceTree = "<group>"; };
 		B1E6E9586D5FC5031CE899FB /* Pods_NoteCircle_NoteCircleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NoteCircle_NoteCircleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1C526174E4D715A2F558687 /* Pods-NoteCircle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoteCircle.release.xcconfig"; path = "Target Support Files/Pods-NoteCircle/Pods-NoteCircle.release.xcconfig"; sourceTree = "<group>"; };
@@ -164,7 +166,8 @@
 		3B2DB62B253057C400133A7F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3BD338D72537731C005C4248 /* ImageModel.swift */,
+				3BF265252540BC0C00C8F937 /* Petition.swift */,
+				3B546A3325413E3500DD526C /* Petitions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -512,15 +515,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B702BDF25401803009B9BF7 /* MoviesViewController.swift in Sources */,
+				3B546A3425413E3500DD526C /* Petitions.swift in Sources */,
 				3BD338D02537699B005C4248 /* RoundButton.swift in Sources */,
 				3BD7148A252F00C000E6A951 /* AppDelegate.swift in Sources */,
 				3B702BDC254012A2009B9BF7 /* MoviesTableViewCell.swift in Sources */,
 				3B575FA42534101200B869B2 /* DataModel.xcdatamodeld in Sources */,
 				3B2DB62A253054DF00133A7F /* LoginViewController.swift in Sources */,
 				3BF058342538B2FA0054F14D /* WelcomeViewController.swift in Sources */,
-				3BD338D82537731C005C4248 /* ImageModel.swift in Sources */,
 				3BD7148C252F00C000E6A951 /* SceneDelegate.swift in Sources */,
 				3B575F9D25340FAE00B869B2 /* CoreDataManager.swift in Sources */,
+				3BF265262540BC0C00C8F937 /* Petition.swift in Sources */,
 				3BD714BA252F0DEC00E6A951 /* AuthenticationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
