@@ -13,6 +13,8 @@ class MoviesViewController: UIViewController {
     // MARK: - Properties
     @IBOutlet weak var movieTableView: UITableView!
     let movieTitle = ["nameOne", "nameTwo", "nameThree", "nameFour"]
+    let titleMovie = ["name"]
+    
     let movieImage = [UIImage(named: "item1"), UIImage(named: "item2"), UIImage(named: "item3"), UIImage(named: "item4")]
     let imageUrlString = "http://swiftdeveloperblog.com/wp-content/uploads/2015/07/1.jpeg"
     var petitions = [Petition]()
@@ -35,10 +37,10 @@ class MoviesViewController: UIViewController {
     }
     
     func parse(json: Data) {
-        let decoder = JSONDecoder()
-        
-        if let jsonPetitions = try? decoder.decode(Petitions.self, from: json) {
-            petitions = jsonPetitions.results
+    let decoder = JSONDecoder()
+
+    if let jsonPetitions = try? decoder.decode(Petitions.self, from: json) {
+        petitions = jsonPetitions.results
             movieTableView.reloadData()
         }
     }
@@ -46,18 +48,16 @@ class MoviesViewController: UIViewController {
 
 // MARK: - UITableViewDelegate
 extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return petitions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MoviesTableViewCell
-        cell.movieLabel.text = petitions[indexPath.row].posterpath
+        cell.movieLabel.text = petitions[indexPath.row].title
+//        cell.movieLabel.text = petitions[indexPath.row].posterpath
         let defaultLink = "https://image.tmdb.org/t/p/"
-        let completeLink = defaultLink + petitions[indexPath.row].posterpath
+        let completeLink = defaultLink + petitions[indexPath.row].poster_path
         cell.movieImageView.downloaded(from: completeLink)
         return cell
         

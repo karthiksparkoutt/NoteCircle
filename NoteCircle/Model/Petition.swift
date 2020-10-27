@@ -10,5 +10,5 @@ import Foundation
 
 struct Petition: Codable {
     var title: String
-    var posterpath: String
+    var poster_path: String
 }
